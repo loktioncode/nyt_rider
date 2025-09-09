@@ -13,7 +13,6 @@ config_version=5
 config/name="nyt_rider"
 run/main_scene="uid://dcml4e5wobb7f"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
 
 [rendering]
 
