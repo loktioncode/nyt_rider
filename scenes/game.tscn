@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://dcml4e5wobb7f"]
+[gd_scene load_steps=10 format=4 uid="uid://dcml4e5wobb7f"]
 
 [ext_resource type="PackedScene" uid="uid://jal3f11nwqx3" path="res://scenes/player.tscn" id="1_80nbo"]
 [ext_resource type="Texture2D" uid="uid://cuuqnn4gnkkxf" path="res://assets/sprites/world_tileset.png" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://dcylfb843iur" path="res://scenes/platform.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://bpmcddcwcfy6v" path="res://scenes/coin.tscn" id="4_lbhrr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e2o6t"]
 texture = ExtResource("2_e2o6t")
@@ -234,3 +235,78 @@ autoplay = "move"
 
 [node name="AnimatableBody2D2" parent="." instance=ExtResource("3_lnu2h")]
 position = Vector2(-65, -49)
+
+[node name="Area2D" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(-517, -8)
+
+[node name="Area2D2" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(-463, 5)
+
+[node name="Area2D3" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(-437, 4)
+
+[node name="Area2D4" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(-412, -1)
+
+[node name="Area2D5" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(-352, -9)
+
+[node name="Area2D6" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(-244, 8)
+
+[node name="Area2D7" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(-168, 6)
+
+[node name="Area2D8" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(-118, -78)
+
+[node name="Area2D9" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(-80, -63)
+
+[node name="Area2D10" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(-67, -63)
+
+[node name="Area2D11" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(-53, -63)
+
+[node name="Area2D12" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(-4, -11)
+
+[node name="Area2D13" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(-64, -9)
+
+[node name="Area2D14" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(42, -25)
+
+[node name="Area2D15" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(89, -42)
+
+[node name="Area2D16" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(235, -19)
+
+[node name="Area2D17" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(173, -57)
+
+[node name="Area2D18" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(250, 22)
+
+[node name="Area2D19" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(263, 22)
+
+[node name="Area2D20" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(377, -24)
+
+[node name="Area2D21" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(299, -56)
+
+[node name="Area2D22" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(315, -56)
+
+[node name="Area2D23" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(331, -75)
+
+[node name="Area2D24" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(411, -57)
+
+[node name="Area2D25" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(444, -42)
