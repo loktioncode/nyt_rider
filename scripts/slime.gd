@@ -17,3 +17,8 @@ func _process(delta: float):
 		animated_sprite.flip_h = false
 		
 	position.x += direction * delta * SPEED
+	
+func take_damage(amount)->void:
+	animated_sprite.play("hit")
+	print("Damage:0", amount)
+	

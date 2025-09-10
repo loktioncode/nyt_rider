@@ -1,8 +1,25 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2xn2dha6jlsu"]
+[gd_scene load_steps=16 format=3 uid="uid://c2xn2dha6jlsu"]
 
 [ext_resource type="Script" uid="uid://js8h15rssuhq" path="res://scripts/slime.gd" id="1_n6pvg"]
 [ext_resource type="Texture2D" uid="uid://djjdyh67nbr08" path="res://assets/sprites/slime_green.png" id="1_wtcfe"]
 [ext_resource type="PackedScene" uid="uid://dqlgtcqn5kgp5" path="res://scenes/kill_zone.tscn" id="2_0e48y"]
+[ext_resource type="Script" uid="uid://bt8ehucukdfpv" path="res://scripts/MyHurtBox.gd" id="3_pjw23"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6pvg"]
+atlas = ExtResource("1_wtcfe")
+region = Rect2(0, 54, 24, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjw23"]
+atlas = ExtResource("1_wtcfe")
+region = Rect2(24, 54, 24, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2npkn"]
+atlas = ExtResource("1_wtcfe")
+region = Rect2(48, 54, 24, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fd6lc"]
+atlas = ExtResource("1_wtcfe")
+region = Rect2(72, 54, 24, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0e48y"]
 atlas = ExtResource("1_wtcfe")
@@ -24,6 +41,23 @@ region = Rect2(72, 24, 24, 24)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_n6pvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjw23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2npkn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fd6lc")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0e48y")
 }, {
 "duration": 1.0,
@@ -40,6 +74,9 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2npkn"]
+size = Vector2(15.5, 20)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epypp"]
 size = Vector2(11, 14)
 
@@ -48,10 +85,16 @@ script = ExtResource("1_n6pvg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kdubu")
-animation = &"idle_enemy"
+animation = &"hit"
 autoplay = "idle_enemy"
-frame = 1
-frame_progress = 0.632277
+
+[node name="MyHurtBox" type="Area2D" parent="AnimatedSprite2D"]
+script = ExtResource("3_pjw23")
+metadata/_custom_type_script = "uid://bt8ehucukdfpv"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/MyHurtBox"]
+position = Vector2(0.25, 2)
+shape = SubResource("RectangleShape2D_2npkn")
 
 [node name="kill_zone" parent="." instance=ExtResource("2_0e48y")]
 
