@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://dcml4e5wobb7f"]
+[gd_scene load_steps=22 format=4 uid="uid://dcml4e5wobb7f"]
 
 [ext_resource type="PackedScene" uid="uid://jal3f11nwqx3" path="res://scenes/player.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://b5f27vss5ucc2" path="res://scripts/game_manager.gd" id="1_gee14"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bpmcddcwcfy6v" path="res://scenes/coin.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://c2xn2dha6jlsu" path="res://scenes/slime.tscn" id="6_p57ef"]
 [ext_resource type="FontFile" uid="uid://bmx3u828pxnfd" path="res://assets/fonts/PixelOperator8.ttf" id="7_u5sy4"]
+[ext_resource type="AudioStream" uid="uid://dh5bt4rmejwoi" path="res://assets/music/time_for_adventure.mp3" id="9_0tnpc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("2_e2o6t")
@@ -538,6 +539,7 @@ theme_override_font_sizes/font_size = 16
 text = "PATH OF BLOOD"
 
 [node name="you made it" type="Label" parent="Labels/Label"]
+layout_mode = 0
 offset_left = 2023.0
 offset_top = -84.0
 offset_right = 2117.0
@@ -583,3 +585,8 @@ offset_bottom = -81.0
 theme_override_fonts/font = ExtResource("7_u5sy4")
 theme_override_font_sizes/font_size = 8
 text = "Beware Dingane  is plotting to kill you!!!!"
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_0tnpc")
+autoplay = true
+bus = &"Music"
