@@ -147,7 +147,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ujl30")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 10.0
 }, {
@@ -245,7 +245,8 @@ position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_2hs0m")
 animation = &"attack"
 autoplay = "idle"
-frame_progress = 0.681959
+frame = 1
+frame_progress = 0.949707
 
 [node name="MyHitBox" type="Area2D" parent="AnimatedSprite2D"]
 script = ExtResource("3_qhqgy")
