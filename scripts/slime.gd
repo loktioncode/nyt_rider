@@ -1,13 +1,15 @@
 extends Node2D
 
-const  SPEED = 60
-#left -1, right 1
+const SPEED = 60
+# left -1, right 1
 var direction = 1
+var damage_taken = 0  # Add damage counter
+
+@onready var game_manager = %GameManager
 @onready var ray_cast_right = $RayCastRight
 @onready var ray_cast_left = $RayCastLeft
 @onready var animated_sprite = $AnimatedSprite2D
 
-#TIME GONE BY SINCE LAST FRAME
 func _process(delta: float):
 	if ray_cast_right.is_colliding():
 		direction = -1
@@ -17,8 +19,11 @@ func _process(delta: float):
 		animated_sprite.flip_h = false
 		
 	position.x += direction * delta * SPEED
-	
-func take_damage(amount)->void:
+
+func take_damage(amount) -> void:
+	damage_taken += amount  # Increment damage counter
 	animated_sprite.play("hit")
-	print("Damage:0", amount)
+	#update global damage
+	game_manager.track_enemy_damage(amount)
+
 	
