@@ -20,10 +20,29 @@ func disable_killzone():
 func enable_killzone():
 	collision_shape.disabled = false
 
+# Alternative: Wait for animation to finish before cleanup
+# When player enters killzone
 func _on_body_entered(body: Node2D) -> void:
-	Engine.time_scale = 0.5
-	body.get_node("CollisionShape2D").queue_free()
-	timer.start()
+	# Make sure we're only affecting the player
+	if not body.is_in_group("player"):
+		return
+	
+	# Get reference to player script
+	var player = body
+	
+	# Check if player has the die function
+	if player.has_method("die"):
+		Engine.time_scale = 0.5
+		player.die()  # Call the player's die function
+		
+		# Connect to death animation finished signal if available
+		if player.has_signal("death_animation_finished"):
+			await player.death_animation_finished
+		else:
+			# Fallback: wait for a fixed time
+			await get_tree().create_timer(1.0).timeout
+		
+		timer.start()
 
 func _on_timer_timeout() -> void:
 	Engine.time_scale = 1

@@ -3,6 +3,7 @@ extends CharacterBody2D
 # Add these signals
 signal attack_started
 signal attack_ended
+signal death_animation_finished
 
 @export var killzone: Area2D 
 @onready var animated_sprite = $AnimatedSprite2D
@@ -12,6 +13,7 @@ var player_damage_received = 0
 const SPEED = 130.0
 const JUMP_VELOCITY = -250.0
 var is_attacking = false
+var is_dead = false  # Add this flag to track death state
 
 var health = 100      # Optional: add health system
 
@@ -21,6 +23,9 @@ func _ready():
 	add_to_group("player")
 	
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		return  # Don't process any movement if dead
+		
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -61,6 +66,9 @@ func _on_animation_finished():
 		attack_ended.emit()  # Emit signal instead of direct call
 
 func take_damage(amount) -> void:
+	if is_dead:
+		return  # Don't take damage if already dead
+		
 	player_damage_received += amount  # Increment damage counter
 	health -= amount       # Optional: subtract from health
 	
@@ -74,6 +82,26 @@ func take_damage(amount) -> void:
 	print("Player health remaining:", health)
 	
 func die() -> void:
+	if is_dead:
+		return  # Don't die again if already dead
+		
+	is_dead = true
 	print("Player died! Total damage taken:", player_damage_received)
-	# Add death logic here
-	animated_sprite.play("death")
+	
+	# Stop horizontal movement but keep vertical movement for falling
+	velocity.x = 0
+	
+	# If not on floor, wait until player hits the ground
+	if not is_on_floor():
+		# Let gravity pull the player down
+		while not is_on_floor():
+			velocity.y += get_gravity().y * get_physics_process_delta_time()
+			move_and_slide()
+			await get_tree().physics_frame
+	
+	# Now play die animation (guaranteed to be on floor)
+	animated_sprite.play("die")
+	
+	# Wait for animation to finish
+	await animated_sprite.animation_finished
+	death_animation_finished.emit()
