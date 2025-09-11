@@ -1,9 +1,33 @@
-[gd_scene load_steps=16 format=3 uid="uid://c2xn2dha6jlsu"]
+[gd_scene load_steps=22 format=3 uid="uid://c2xn2dha6jlsu"]
 
 [ext_resource type="Script" uid="uid://js8h15rssuhq" path="res://scripts/slime.gd" id="1_n6pvg"]
 [ext_resource type="Texture2D" uid="uid://djjdyh67nbr08" path="res://assets/sprites/slime_green.png" id="1_wtcfe"]
 [ext_resource type="PackedScene" uid="uid://dqlgtcqn5kgp5" path="res://scenes/kill_zone.tscn" id="2_0e48y"]
 [ext_resource type="Script" uid="uid://bt8ehucukdfpv" path="res://scripts/MyHurtBox.gd" id="3_pjw23"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gstla"]
+atlas = ExtResource("1_wtcfe")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5wyi"]
+atlas = ExtResource("1_wtcfe")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l8pv"]
+atlas = ExtResource("1_wtcfe")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnioy"]
+atlas = ExtResource("1_wtcfe")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xjuo"]
+atlas = ExtResource("1_wtcfe")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a02ik"]
+atlas = ExtResource("1_wtcfe")
+region = Rect2(0, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n6pvg"]
 atlas = ExtResource("1_wtcfe")
@@ -39,6 +63,29 @@ region = Rect2(72, 24, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kdubu"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gstla")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5wyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l8pv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnioy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xjuo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a02ik")
+}],
+"loop": false,
+"name": &"die",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_n6pvg")
@@ -85,8 +132,10 @@ script = ExtResource("1_n6pvg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kdubu")
-animation = &"hit"
+animation = &"die"
 autoplay = "idle_enemy"
+frame = 5
+frame_progress = 1.0
 
 [node name="MyHurtBox" type="Area2D" parent="AnimatedSprite2D"]
 script = ExtResource("3_pjw23")
