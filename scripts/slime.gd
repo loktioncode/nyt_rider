@@ -3,7 +3,7 @@ extends Node2D
 const SPEED = 60
 # left -1, right 1
 var direction = 1
-var damage_taken = 0  # Add damage counter
+var player_damage_received = 0  # Add damage counter
 
 @onready var game_manager = %GameManager
 @onready var ray_cast_right = $RayCastRight
@@ -21,9 +21,10 @@ func _process(delta: float):
 	position.x += direction * delta * SPEED
 
 func take_damage(amount) -> void:
-	damage_taken += amount  # Increment damage counter
+	player_damage_received += amount  # Increment damage counter
 	animated_sprite.play("hit")
 	#update global damage
 	game_manager.track_enemy_damage(amount)
+	
 
 	

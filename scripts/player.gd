@@ -8,10 +8,11 @@ signal attack_ended
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var game_manager = %GameManager
 
+var player_damage_received = 0
 const SPEED = 130.0
 const JUMP_VELOCITY = -250.0
 var is_attacking = false
-var damage_taken = 0  # Add damage counter
+
 var health = 100      # Optional: add health system
 
 func _ready():
@@ -60,20 +61,19 @@ func _on_animation_finished():
 		attack_ended.emit()  # Emit signal instead of direct call
 
 func take_damage(amount) -> void:
-	damage_taken += amount  # Increment damage counter
+	player_damage_received += amount  # Increment damage counter
 	health -= amount       # Optional: subtract from health
 	
 	#update global damage
 	game_manager.track_player_damage(amount)
-	
 	animated_sprite.play("hit")
 	if health <= 0:
 		die()
 	print("Player damage taken:", amount)
-	print("Player total damage:", damage_taken)
+	print("Player total damage:", player_damage_received)
 	print("Player health remaining:", health)
 	
 func die() -> void:
-	print("Player died! Total damage taken:", damage_taken)
+	print("Player died! Total damage taken:", player_damage_received)
 	# Add death logic here
 	animated_sprite.play("death")

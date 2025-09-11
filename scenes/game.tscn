@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://dcml4e5wobb7f"]
+[gd_scene load_steps=22 format=4 uid="uid://dcml4e5wobb7f"]
 
 [ext_resource type="PackedScene" uid="uid://jal3f11nwqx3" path="res://scenes/player.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://b5f27vss5ucc2" path="res://scripts/game_manager.gd" id="1_gee14"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bpmcddcwcfy6v" path="res://scenes/coin.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://c2xn2dha6jlsu" path="res://scenes/slime.tscn" id="6_p57ef"]
 [ext_resource type="FontFile" uid="uid://bmx3u828pxnfd" path="res://assets/fonts/PixelOperator8.ttf" id="7_u5sy4"]
+[ext_resource type="Script" uid="uid://dalaqmqn2nh1m" path="res://scripts/enemies.gd" id="8_0tnpc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("2_e2o6t")
@@ -521,11 +522,6 @@ libraries = {
 }
 autoplay = "move"
 
-[node name="Enemies" type="Node" parent="."]
-
-[node name="slime" parent="Enemies" instance=ExtResource("6_p57ef")]
-position = Vector2(-19, 3)
-
 [node name="Labels" type="Node" parent="."]
 
 [node name="Label" type="Label" parent="Labels"]
@@ -584,3 +580,9 @@ offset_bottom = -81.0
 theme_override_fonts/font = ExtResource("7_u5sy4")
 theme_override_font_sizes/font_size = 8
 text = "Beware Dingane  is plotting to kill you!!!!"
+
+[node name="Enemies" type="Node" parent="."]
+script = ExtResource("8_0tnpc")
+
+[node name="slime" parent="Enemies" instance=ExtResource("6_p57ef")]
+position = Vector2(-19, 3)
